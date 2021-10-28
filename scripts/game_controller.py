@@ -16,6 +16,7 @@ fps = 60
 clock = pygame.time.Clock()
 quit_game = False
 
+#vong lap game
 while quit_game == False:
     clock.tick(fps)
     screen.fill((255, 255, 255))

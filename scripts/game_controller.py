@@ -14,23 +14,23 @@ playerr = player.Player(120, 230, "images/player.png", 0, 0)
 #gioi han fps
 fps = 60
 clock = pygame.time.Clock()
+quit_game = False
 
-game_over = False
-
-while game_over == False:
+while quit_game == False:
     clock.tick(fps)
     screen.fill((255, 255, 255))
 
     #hien thi player
     player_rect = screen.blit(playerr.image, (playerr.x_pos, playerr.y_pos))
-    print(playerr.y_pos)
 
     #nhay
     playerr.jump()
 
     for event in pygame.event.get():
+
+        #Quit game
         if event.type == pygame.QUIT:
-            game_over = True
+            quit_game = True
 
     pygame.display.update()
 

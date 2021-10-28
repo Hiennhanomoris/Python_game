@@ -11,7 +11,7 @@ pygame.display.set_caption("DINOSAUR")
 #tao cac object ban dau
 playerr = player.Player(120, 230, "images/player.png", 0, 0)
 
-#goi han fps
+#gioi han fps
 fps = 60
 clock = pygame.time.Clock()
 

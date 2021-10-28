@@ -19,4 +19,4 @@ while game_over == False:
 
     pygame.display.update()
 
-pygame.quit
+pygame.quit 

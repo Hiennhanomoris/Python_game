@@ -2,7 +2,6 @@ import pygame
 import objects
 
 
-
 class Player(objects.Objects):
     def __init__(self, x_pos, y_pos, image, x_vel, y_vel):
         super().__init__(x_pos, y_pos, image, x_vel, y_vel)
@@ -12,11 +11,11 @@ class Player(objects.Objects):
         dy = 0
 
         key = pygame.key.get_pressed()
-        if key[pygame.K_SPACE] and self.y_pos > 210:
-            self.y_vel -= 1
+        if key[pygame.K_SPACE] and self.y_pos > 215:
+            self.y_vel -= 2
 
         # add gravity
-        self.y_vel += 0.2
+        self.y_vel += 0.3
         if self.y_vel > 10:
             self.y_vel = 10
 

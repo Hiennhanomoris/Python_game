@@ -9,3 +9,4 @@ class Objects:
         self.x_vel = x_vel                         #toc do theo chieu Ox (neu co)
         self.y_vel = y_vel                         #toc do theo chieu Oy (neu co) 
 
+

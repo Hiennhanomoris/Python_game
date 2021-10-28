@@ -12,10 +12,10 @@ class Player(objects.Objects):
 
         key = pygame.key.get_pressed()
         if key[pygame.K_SPACE] and self.y_pos > 215:
-            self.y_vel -= 2
+            self.y_vel -= 3
 
         # add gravity
-        self.y_vel += 0.3
+        self.y_vel += 0.4
         if self.y_vel > 10:
             self.y_vel = 10
 

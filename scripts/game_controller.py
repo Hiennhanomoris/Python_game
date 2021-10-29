@@ -1,6 +1,7 @@
 import pygame
 import player
 import background
+import ground
 
 
 pygame.init();
@@ -16,13 +17,16 @@ fps = 60
 clock = pygame.time.Clock()
 quit_game = False
 
+def hien_thi():
+     player_rect = screen.blit(playerr.image, (playerr.x_pos, playerr.y_pos))
+
 #vong lap game
 while quit_game == False:
     clock.tick(fps)
     screen.fill((255, 255, 255))
 
-    #hien thi player
-    player_rect = screen.blit(playerr.image, (playerr.x_pos, playerr.y_pos))
+    #hien thi anh
+    hien_thi()
 
     #nhay
     playerr.jump()

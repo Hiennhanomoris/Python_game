@@ -30,6 +30,7 @@ while quit_game == False:
 
     #nhay
     playerr.jump()
+    playerr.update()
 
     for event in pygame.event.get():
 

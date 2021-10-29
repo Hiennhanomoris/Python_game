@@ -7,7 +7,7 @@ import ground
 pygame.init();
 #tao man hinh
 screen = pygame.display.set_mode((800, 400))
-pygame.display.set_caption("DINOSAUR")
+pygame.display.set_caption("RUN NOW")
 
 #tao cac object ban dau
 playerr = player.Player(120, 230, "images/player.png", 0, 0)
@@ -41,3 +41,4 @@ while quit_game == False:
     pygame.display.update()
 
 pygame.quit 
+#

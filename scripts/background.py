@@ -1,5 +1,4 @@
 import pygame
-import game_controller
 import objects
 
 # cac thuoc tinh, chuc nang background

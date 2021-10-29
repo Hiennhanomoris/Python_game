@@ -12,7 +12,7 @@ class Player(objects.Objects):
         self.counter = 0
         for i in range(1, 7):
             img = pygame.image.load(f"images/player/player_run/Cyborg_run{i}.png")
-            img = pygame.transform.scale(img, (35, 35))
+            img = pygame.transform.scale(img, (60, 60))
             self.animation.append(img)
         self.image = self.animation[self.index]
         #slowdown animation

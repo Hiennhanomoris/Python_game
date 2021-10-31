@@ -17,14 +17,16 @@ class Player(objects.Objects):
         self.image = self.animation[self.index]
         #slowdown animation
         self.slowdown = 20
+        self.on_ground = True
 
     #player nhay khi giu phim space
     def jump(self):
         dy = 0
 
         key = pygame.key.get_pressed()
-        if key[pygame.K_SPACE] and self.y_pos > 215:
-            self.y_vel -= 3
+        if key[pygame.K_SPACE] and self.on_ground:
+            self.on_ground = False
+            self.y_vel -= 10
 
         # add gravity
         self.y_vel += 0.4
@@ -34,6 +36,7 @@ class Player(objects.Objects):
         if self.y_pos > 230:
             self.y_vel = 0
             self.y_pos = 230
+            self.on_ground = True
         
         dy += self.y_vel
 

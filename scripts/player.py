@@ -9,15 +9,28 @@ class Player(objects.Objects):
         #for animation
         self.run_animation = []
         self.run_index = 0
+        self.jump_animation = []
+        self.jump_index = 0
         self.counter = 0
+        self.on_ground = True
+
+        #cho cac anh vao cac array de tien su dung
         for i in range(1, 7):
             img = pygame.image.load(f"images/player/player_run/Cyborg_run{i}.png")
             img = pygame.transform.scale(img, (60, 60))
             self.run_animation.append(img)
-        self.image = self.run_animation[self.run_index]
+        for i in range(1, 5):
+            img = pygame.image.load(f"images/player/player_jump/Cyborg_jump{i}.png")
+            img = pygame.transform.scale(img, (60, 60))
+            self.jump_animation.append(img)
+
+        if self.on_ground:
+            self.image = self.run_animation[self.run_index]
+        else:
+            self.image = self.jump_animation[self.jump_index]
         #slowdown animation
         self.slowdown = 20
-        self.on_ground = True
+
 
     #player nhay khi giu phim space
     def jump(self):

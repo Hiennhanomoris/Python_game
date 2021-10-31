@@ -8,5 +8,6 @@ class Objects:
         self.image = pygame.image.load(image)      #hinh anh
         self.x_vel = x_vel                         #toc do theo chieu Ox (neu co)
         self.y_vel = y_vel                         #toc do theo chieu Oy (neu co) 
+    
 
 

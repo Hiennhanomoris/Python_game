@@ -5,6 +5,10 @@ import objects
 class Player(objects.Objects):
     def __init__(self, x_pos, y_pos, image, x_vel, y_vel):
         super().__init__(x_pos, y_pos, image, x_vel, y_vel)
+        self.image = pygame.transform.scale(self.image, (60, 60))
+        self.rect = self.image.get_rect()
+        self.rect.x = x_pos
+        self.rect.y = y_pos
 
         #for animation
         self.run_animation = []
@@ -42,15 +46,16 @@ class Player(objects.Objects):
         if self.y_vel > 10:
             self.y_vel = 10
 
-        if self.y_pos > 230:
+        if self.rect.y > 230:
             self.y_vel = 0
-            self.y_pos = 230
+            self.rect.y = 230
             self.on_ground = True
             self.jump_index = 0
         
         dy += self.y_vel
 
-        self.y_pos += dy
+
+        self.rect.y += dy
     
     def update(self):
         self.counter += 3.5
@@ -68,3 +73,4 @@ class Player(objects.Objects):
                 self.jump_index += 1
                 if self.jump_index >= len(self.jump_animation):
                     self.jump_index = len(self.jump_animation)-1
+

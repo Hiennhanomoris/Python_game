@@ -2,6 +2,7 @@ import pygame
 import player
 import background
 import ground
+import textx
 
 
 pygame.init();
@@ -18,8 +19,8 @@ clock = pygame.time.Clock()
 quit_game = False
                             
 def hien_thi():
-     player_rect = screen.blit(playerr.image, (playerr.x_pos, playerr.y_pos))
-
+    screen.blit(playerr.image, playerr.rect)
+    pygame.draw.rect(screen, (0, 0, 0), playerr.rect, width=2)
 #vong lap game
 while quit_game == False:
     clock.tick(fps)
@@ -33,7 +34,6 @@ while quit_game == False:
     playerr.update()
 
     for event in pygame.event.get():
-
         #Quit game
         if event.type == pygame.QUIT:
             quit_game = True

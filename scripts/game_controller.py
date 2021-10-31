@@ -21,6 +21,7 @@ quit_game = False
 def hien_thi():
     screen.blit(playerr.image, playerr.rect)
     pygame.draw.rect(screen, (0, 0, 0), playerr.rect, width=2)
+    
 #vong lap game
 while quit_game == False:
     clock.tick(fps)

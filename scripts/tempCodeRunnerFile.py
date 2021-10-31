@@ -1,1 +1,0 @@
-(playerr.x_pos, playerr.y_pos)

@@ -29,7 +29,7 @@ class Player(objects.Objects):
             self.y_vel -= 10
 
         # add gravity
-        self.y_vel += 0.4
+        self.y_vel += 0.5
         if self.y_vel > 10:
             self.y_vel = 10
 

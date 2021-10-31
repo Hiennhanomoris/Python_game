@@ -24,10 +24,6 @@ class Player(objects.Objects):
             img = pygame.transform.scale(img, (60, 60))
             self.jump_animation.append(img)
 
-        if self.on_ground:
-            self.image = self.run_animation[self.run_index]
-        else:
-            self.image = self.jump_animation[self.jump_index]
         #slowdown animation
         self.slowdown = 20
 
@@ -50,6 +46,7 @@ class Player(objects.Objects):
             self.y_vel = 0
             self.y_pos = 230
             self.on_ground = True
+            self.jump_index = 0
         
         dy += self.y_vel
 
@@ -61,7 +58,13 @@ class Player(objects.Objects):
         #handle animation
         if self.counter > self.slowdown:
             self.counter = 0
-            self.run_index += 1
-            if self.run_index >= len(self.run_animation):
-                self.run_index = 0
-            self.image = self.run_animation[self.run_index]
+            if self.on_ground:
+                self.image = self.run_animation[self.run_index]
+                self.run_index += 1
+                if self.run_index >= len(self.run_animation):
+                    self.run_index = 0
+            else:
+                self.image = self.jump_animation[self.jump_index]
+                self.jump_index += 1
+                if self.jump_index >= len(self.jump_animation):
+                    self.jump_index = len(self.jump_animation)-1

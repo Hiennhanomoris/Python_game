@@ -16,7 +16,7 @@ playerr = player.Player(120, 230, "images/player.png", 0, 0)
 fps = 60
 clock = pygame.time.Clock()
 quit_game = False
-
+                            
 def hien_thi():
      player_rect = screen.blit(playerr.image, (playerr.x_pos, playerr.y_pos))
 

@@ -53,15 +53,14 @@ class Player(objects.Objects):
             self.jump_index = 0
         
         dy += self.y_vel
-
-
         self.rect.y += dy
     
-    def update(self):
+    def update(self, score):
         self.counter += 3.5
 
         #handle animation
         if self.counter > self.slowdown:
+            score.incre_point()
             self.counter = 0
             if self.on_ground:
                 self.image = self.run_animation[self.run_index]
@@ -73,4 +72,9 @@ class Player(objects.Objects):
                 self.jump_index += 1
                 if self.jump_index >= len(self.jump_animation):
                     self.jump_index = len(self.jump_animation)-1
+
+    #hien thi player
+    def hien_thi(self, screen):
+        screen.blit(self.image, self.rect)
+        pygame.draw.rect(screen, (0, 0, 0), self.rect, width=2)
 

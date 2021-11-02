@@ -21,7 +21,7 @@ quit_game = False
                             
 def hien_thi():
     playerr.hien_thi(screen)
-    score.hien_thi(screen, 0, 0, f"Score: {score.point}")
+    score.hien_thi(screen, 0, 0, f"Score:{score.point}")
     
 #vong lap game
 while quit_game == False:

@@ -3,15 +3,17 @@ import player
 import background
 import ground
 import textx
+from pygame import mixer
 
-
+mixer.init()
 pygame.init();
+
 #tao man hinh
 screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption("RUN NOW")
 
 #tao cac object ban dau
-playerr = player.Player(120, 230, "images/player.png", 0, 0)
+playerr = player.Player(120, 230, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
 
 #gioi han fps
@@ -22,7 +24,7 @@ quit_game = False
 def hien_thi():
     playerr.hien_thi(screen)
     score.hien_thi(screen, 0, 0, f"Score:{score.point}")
-    
+
 #vong lap game
 while quit_game == False:
     clock.tick(fps)

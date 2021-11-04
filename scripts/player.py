@@ -3,7 +3,7 @@ import objects
 
 
 class Player(objects.Objects):
-    def __init__(self, x_pos, y_pos, image, x_vel, y_vel):
+    def __init__(self, x_pos, y_pos, image, x_vel, y_vel, mixer):
         super().__init__(x_pos, y_pos, image, x_vel, y_vel)
         self.image = pygame.transform.scale(self.image, (60, 60))
         self.rect = self.image.get_rect()
@@ -30,6 +30,8 @@ class Player(objects.Objects):
 
         #slowdown animation
         self.slowdown = 20
+        self.counter_sound = 0
+        self.jumping_sound = mixer.Sound("sound/Plop_Jump_SFX.wav")
 
 
     #player nhay khi giu phim space
@@ -40,6 +42,8 @@ class Player(objects.Objects):
         if key[pygame.K_SPACE] and self.on_ground:
             self.on_ground = False
             self.y_vel -= 10
+            #jumping audio
+            self.jumping_sound.play()
 
         # add gravity
         self.y_vel += 0.5

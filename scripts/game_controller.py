@@ -31,7 +31,7 @@ while quit_game == False:
     screen.fill((255, 255, 255))
 
     #hien thi anh
-    hien_thi(screen)
+    hien_thi()
 
     #nhay
     playerr.jump()

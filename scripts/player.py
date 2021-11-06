@@ -41,12 +41,12 @@ class Player(objects.Objects):
         key = pygame.key.get_pressed()
         if key[pygame.K_SPACE] and self.on_ground:
             self.on_ground = False
-            self.y_vel -= 10
+            self.y_vel -= 13
             #jumping audio
             self.jumping_sound.play()
 
         # add gravity
-        self.y_vel += 0.5
+        self.y_vel += 0.7
         if self.y_vel > 10:
             self.y_vel = 10
 

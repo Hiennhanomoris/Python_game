@@ -5,7 +5,7 @@ import textx
 from pygame import mixer 
 import land
 mixer.init()
-pygame.init();
+pygame.init()
 
 #tao man hinh
 screen = pygame.display.set_mode((800, 400))  

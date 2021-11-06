@@ -14,13 +14,16 @@ class Land(objects.Objects):
         self.height = height  
         self.land_speed = 2 #toc do di chuyen cuc dat di dong
         img = pygame.image.load(image)  
-        self.image = pygame.transform.scale(img, (self.width, self.height))      
+        self.image = pygame.transform.scale(img, (self.width, self.height)) 
+        self.rect = self.image.get_rect()
+        self.rect.x = x_pos
+        self.rect.y = y_pos     
 
     def draw(self,screen):
-        screen.blit(self.image, (self.x_pos,self.y_pos))
+        screen.blit(self.image, (self.rect.x,self.rect.y))
 
     def update(self):
-        self.x_pos -= self.land_speed
-        if self.x_pos < -self.width:
-            self.x_pos = 800 - self.width
-            self.y_pos = random.randint(280,350)
+        self.rect.x -= self.land_speed
+        if self.rect.x < -self.width:
+            self.rect.x = 800 - self.width
+            self.rect.y = random.randint(280,350)

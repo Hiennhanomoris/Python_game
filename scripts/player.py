@@ -9,6 +9,7 @@ class Player(objects.Objects):
         self.rect = self.image.get_rect()
         self.rect.x = x_pos
         self.rect.y = y_pos
+        self.die = False
 
         #for animation
         self.run_animation = []
@@ -32,6 +33,7 @@ class Player(objects.Objects):
         self.slowdown = 20
         self.counter_sound = 0
         self.jumping_sound = mixer.Sound("sound/Plop_Jump_SFX.wav")
+        self.game_over_sound = mixer.Sound("sound/game_over.wav")
 
 
     #player nhay khi giu phim space
@@ -56,10 +58,10 @@ class Player(objects.Objects):
     def check_collision(self, land_group):
         #check collision with ground
         if self.rect.y > 350:
-            self.y_vel = 0
+            self.die = True
             self.rect.y = 350
-            self.on_ground = True
-            self.jump_index = 0
+            self.y_vel = 0
+            self.game_over_sound.play()
 
         #check collision with land
         for land in land_group:

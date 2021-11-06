@@ -15,6 +15,7 @@ pygame.display.set_caption("RUN NOW")
 bg1 = background.Background(0,0,"images/bg.jpg",0,0)
 playerr = player.Player(250, 90, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
+game_over = textx.Textx("consolas", 60, "Score", (255, 30, 0))
 landstart = land.Land(0, 250,"images/LAND/landstart.png",0,0, 130, 40)
 land1 = land.Land(200, 240,"images/LAND/land1.png",0,0, 120, 45)
 land2 = land.Land(400 ,250,"images/LAND/land2.png",0,0, 120, 40)
@@ -43,10 +44,13 @@ def movement():
 #vong lap game
 while quit_game == False:
     clock.tick(fps)
-    screen.fill((255, 255, 255)) 
-    #hien thi anh
-    hien_thi()
-    movement()
+    if playerr.die == False:
+        screen.fill((255, 255, 255)) 
+        #hien thi anh
+        hien_thi()
+        movement()
+    else:
+        game_over.hien_thi(screen, 250, 200, "GAME OVER!!!")
 
     for event in pygame.event.get():
         #Quit game

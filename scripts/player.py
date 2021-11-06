@@ -60,6 +60,14 @@ class Player(objects.Objects):
             self.rect.y = 350
             self.on_ground = True
             self.jump_index = 0
+
+        #check collision with land
+        for land in land_group:
+            if land.rect.colliderect(self.rect.x, self.rect.y, 60, 60):
+                if self.rect.bottom < land.rect.centery:
+                    self.rect.bottom = land.rect.top
+                    self.y_vel = 0
+                    self.on_ground = True
     
     def update(self, score, land_group):
         self.counter += 3.5
@@ -84,5 +92,5 @@ class Player(objects.Objects):
     #hien thi player
     def hien_thi(self, screen):
         screen.blit(self.image, self.rect)
-        pygame.draw.rect(screen, (0, 0, 0), self.rect, width=2)
+        #pygame.draw.rect(screen, (0, 0, 0), self.rect, width=2)
 

@@ -1,7 +1,6 @@
 import pygame
 import player
 import background
-import ground
 import textx
 from pygame import mixer 
 import land
@@ -45,18 +44,6 @@ def movement():
     land2.update()
     land3.update()
     landstart.update()
-    if landstart.x_pos < -landstart.width:
-        landstart.x_pos = 800 - landstart.width
-        landstart.y_pos = random.randint(235,265)
-    if land1.x_pos < -land1.width:
-        land1.x_pos = 800 - land1.width
-        land1.y_pos = random.randint(235,265)
-    if land2.x_pos < -land2.width:
-        land2.x_pos = 800 - land2.width
-        land2.y_pos = random.randint(235,265)
-    if land3.x_pos < -land3.width:
-        land3.x_pos = 800 - land3.width
-        land3.y_pos = random.randint(235,265)
 
 #vong lap game
 while quit_game == False:

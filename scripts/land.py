@@ -1,4 +1,6 @@
 import pygame
+import random
+
 class Land():
     def __init__(self,x_pos, y_pos, width, height, image, x_vel, y_vel):
         self.x_pos = x_pos                         
@@ -16,3 +18,6 @@ class Land():
 
     def update(self):
         self.x_pos -= self.land_speed
+        if self.x_pos < -self.width:
+            self.x_pos = 800 - self.width
+            self.y_pos = random.randint(235,265)

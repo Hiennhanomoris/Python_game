@@ -14,6 +14,7 @@ screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption("RUN NOW")
 
 #tao cac object ban dau
+bg1 = background.Background(0,0,"images/bg.jpg",0,0)
 playerr = player.Player(120, 230, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
 landstart = land.Land(0, 250,130 ,40,"images/LAND/landstart.png",0,0)
@@ -28,6 +29,7 @@ clock = pygame.time.Clock()
 quit_game = False
                             
 def hien_thi():
+    bg1.draw(screen)
     playerr.hien_thi(screen)
     score.hien_thi(screen, 0, 0, f"Score:{score.point}")
     landstart.draw(screen)
@@ -57,8 +59,6 @@ def movement():
         land3.y_pos = random.randint(235,265)
 
 #vong lap game
-# bg1 = background.Background(0,0,"images/bg.jpg",0,0)
-# bg1.draw(screen)
 while quit_game == False:
     clock.tick(fps)
     screen.fill((255, 255, 255)) 

@@ -3,13 +3,13 @@ import player
 import background
 import ground
 import textx
-from pygame import mixer
-
+from pygame import mixer 
+#m thử chạy đi
 mixer.init()
 pygame.init();
 
 #tao man hinh
-screen = pygame.display.set_mode((800, 400))
+screen = pygame.display.set_mode((800, 400))  
 pygame.display.set_caption("RUN NOW")
 
 #tao cac object ban dau

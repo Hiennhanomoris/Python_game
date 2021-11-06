@@ -46,7 +46,7 @@ class Player(objects.Objects):
             self.jumping_sound.play()
 
         # add gravity
-        self.y_vel += 0.7
+        self.y_vel += 0.6
         if self.y_vel > 10:
             self.y_vel = 10
 

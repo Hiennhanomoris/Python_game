@@ -36,7 +36,7 @@ def hien_thi():
 
 def movement():
     playerr.jump()
-    playerr.update(score)
+    playerr.update(score, land_group)
     for land in land_group:
         land.update()
 

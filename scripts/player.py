@@ -49,20 +49,19 @@ class Player(objects.Objects):
         self.y_vel += 0.6
         if self.y_vel > 10:
             self.y_vel = 10
-
-        #check collision with land
         
+        dy += self.y_vel
+        self.rect.y += dy
 
+    def check_collision(self, land_group):
+        #check collision with ground
         if self.rect.y > 350:
             self.y_vel = 0
             self.rect.y = 350
             self.on_ground = True
             self.jump_index = 0
-        
-        dy += self.y_vel
-        self.rect.y += dy
     
-    def update(self, score):
+    def update(self, score, land_group):
         self.counter += 3.5
 
         #handle animation
@@ -79,6 +78,8 @@ class Player(objects.Objects):
                 self.jump_index += 1
                 if self.jump_index >= len(self.jump_animation):
                     self.jump_index = len(self.jump_animation)-1
+        
+        self.check_collision(land_group)
 
     #hien thi player
     def hien_thi(self, screen):

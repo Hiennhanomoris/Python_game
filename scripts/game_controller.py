@@ -4,7 +4,6 @@ import background
 import textx
 from pygame import mixer 
 import land
-import random
 mixer.init()
 pygame.init();
 
@@ -16,10 +15,10 @@ pygame.display.set_caption("RUN NOW")
 bg1 = background.Background(0,0,"images/bg.jpg",0,0)
 playerr = player.Player(120, 230, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
-landstart = land.Land(0, 250,130 ,40,"images/LAND/landstart.png",0,0)
-land1 = land.Land(200, 240, 120 , 45,"images/LAND/land1.png",0,0)
-land2 = land.Land(400 ,250, 120 , 40,"images/LAND/land2.png",0,0)
-land3 = land.Land(600 , 260, 90 , 75,"images/LAND/land3.png",0,0)
+landstart = land.Land(0, 250,"images/LAND/landstart.png",0,0, 130, 40)
+land1 = land.Land(200, 240,"images/LAND/land1.png",0,0, 120, 45)
+land2 = land.Land(400 ,250,"images/LAND/land2.png",0,0, 120, 40)
+land3 = land.Land(600 , 260,"images/LAND/land3.png",0,0, 90, 75)
 
 
 #gioi han fps

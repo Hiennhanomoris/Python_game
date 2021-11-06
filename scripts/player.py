@@ -71,12 +71,11 @@ class Player(objects.Objects):
                     self.y_vel = 0
                     self.on_ground = True
     
-    def update(self, score, land_group):
+    def update(self, land_group):
         self.counter += 3.5
 
         #handle animation
         if self.counter > self.slowdown:
-            score.incre_point()
             self.counter = 0
             if self.on_ground:
                 self.image = self.run_animation[self.run_index]

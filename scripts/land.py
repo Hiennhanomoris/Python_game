@@ -17,8 +17,9 @@ class Land(objects.Objects):
     def draw(self,screen):
         screen.blit(self.image, self.rect)
 
-    def update(self):
+    def update(self, score):
         self.rect.x -= self.land_speed
         if self.rect.x < -self.width:
+            score.incre_point()
             self.rect.x = 800 - self.width
             self.rect.y = random.randint(280,350)

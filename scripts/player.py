@@ -50,9 +50,12 @@ class Player(objects.Objects):
         if self.y_vel > 10:
             self.y_vel = 10
 
-        if self.rect.y > 230:
+        #check collision with land
+        
+
+        if self.rect.y > 350:
             self.y_vel = 0
-            self.rect.y = 230
+            self.rect.y = 350
             self.on_ground = True
             self.jump_index = 0
         

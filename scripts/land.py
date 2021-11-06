@@ -20,7 +20,7 @@ class Land(objects.Objects):
         self.rect.y = y_pos     
 
     def draw(self,screen):
-        screen.blit(self.image, (self.rect.x,self.rect.y))
+        screen.blit(self.image, self.rect)
 
     def update(self):
         self.rect.x -= self.land_speed

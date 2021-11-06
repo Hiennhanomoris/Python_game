@@ -23,4 +23,4 @@ class Land(objects.Objects):
         self.x_pos -= self.land_speed
         if self.x_pos < -self.width:
             self.x_pos = 800 - self.width
-            self.y_pos = random.randint(235,350)
+            self.y_pos = random.randint(280,350)

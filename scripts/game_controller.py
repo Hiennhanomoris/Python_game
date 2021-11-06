@@ -35,15 +35,7 @@ def hien_thi():
     land2.draw(screen)
     land3.draw(screen)
 
-#vong lap game
-# bg1 = background.Background(0,0,"images/bg.jpg",0,0)
-# bg1.draw(screen)
-while quit_game == False:
-    clock.tick(fps)
-    screen.fill((255, 255, 255)) 
-    #hien thi anh
-    hien_thi()
-    #nhay
+def movement():
     playerr.jump()
     playerr.update(score)
     #cuc dat di dong
@@ -63,6 +55,16 @@ while quit_game == False:
     if land3.x_pos < -land3.width:
         land3.x_pos = 800 - land3.width
         land3.y_pos = random.randint(235,265)
+
+#vong lap game
+# bg1 = background.Background(0,0,"images/bg.jpg",0,0)
+# bg1.draw(screen)
+while quit_game == False:
+    clock.tick(fps)
+    screen.fill((255, 255, 255)) 
+    #hien thi anh
+    hien_thi()
+    movement()
 
     for event in pygame.event.get():
         #Quit game

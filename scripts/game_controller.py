@@ -54,6 +54,8 @@ def reset():
     land3.rect.y = 260
     landstart.rect.x = 0
     landstart.rect.y = 250
+    for land in land_group:
+        land.land_speed = 1
 
 #vong lap game
 while quit_game == False:

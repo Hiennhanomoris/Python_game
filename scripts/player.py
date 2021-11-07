@@ -43,12 +43,12 @@ class Player(objects.Objects):
         key = pygame.key.get_pressed()
         if key[pygame.K_SPACE] and self.on_ground:
             self.on_ground = False
-            self.y_vel -= 13
+            self.y_vel -= 7.5
             #jumping audio
             self.jumping_sound.play()
 
         # add gravity
-        self.y_vel += 0.6
+        self.y_vel += 0.3
         if self.y_vel > 10:
             self.y_vel = 10
         
@@ -72,7 +72,7 @@ class Player(objects.Objects):
                     self.on_ground = True
     
     def update(self, land_group):
-        self.counter += 3.5
+        self.counter += 2.2
 
         #handle animation
         if self.counter > self.slowdown:

@@ -25,7 +25,7 @@ land_group = [land1, land2, land3, landstart]
 
 
 #gioi han fps
-fps = 60
+fps = 120
 clock = pygame.time.Clock()
 quit_game = False
                             

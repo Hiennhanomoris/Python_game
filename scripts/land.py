@@ -29,8 +29,8 @@ class Land(objects.Objects):
             self.rect.x = 800 - self.width
             self.rect.y = random.randint(280,350)
 
-        if score.point%10 == 0 and self.check_speed_up == True:
+        if score.point%20 == 0 and self.check_speed_up == True:
             self.speed_up()
             self.check_speed_up = False
-        if score.point%10 == 1:
+        if score.point%20 == 1:
             self.check_speed_up = True

@@ -4,6 +4,7 @@ import background
 import textx
 from pygame import mixer 
 import land
+import os
 
 mixer.init()
 pygame.init()
@@ -30,6 +31,12 @@ fps = 120
 clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
+#get high_score
+if os.path.exists("high_score.txt"):
+    with open("high_score.txt", "r") as file:
+        high_score = int(file.read())
+else:
+    high_score = 0
                             
 def hien_thi():
     bg1.draw(screen)
@@ -63,12 +70,22 @@ def reset():
 
 def game_over_screen():
     global fade_counter
+    global high_score
     if fade_counter < 800:
         fade_counter += 3
         pygame.draw.rect(screen, (0, 0, 0), (0, 0, fade_counter, 400))
         pygame.draw.rect(screen, (0, 0, 0), (800-fade_counter, 0, 800, 400))
-        
-    score.hien_thi(screen, 300, 100, f"Score:{score.point}")
+
+    if score.point < high_score:  
+        score.hien_thi(screen, 300, 100, f"Your Score:{score.point}")
+        score.hien_thi(screen, 300, 150, f"High Score:{high_score}")
+    else:
+        score.hien_thi(screen, 300, 100, f"Best Score:{score.point}")
+        #update high score
+        high_score = score.point
+        with open("high_score.txt", "w") as file:
+            file.write(str(high_score))
+
     game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")
     play_again.hien_thi(screen, 260, 30, "press space to try again :)")        
 

@@ -4,6 +4,7 @@ import background
 import textx
 from pygame import mixer 
 import land
+
 mixer.init()
 pygame.init()
 
@@ -28,6 +29,7 @@ land_group = [land1, land2, land3, landstart]
 fps = 120
 clock = pygame.time.Clock()
 quit_game = False
+fade_counter = 0
                             
 def hien_thi():
     bg1.draw(screen)
@@ -43,6 +45,8 @@ def movement():
         land.update(score)
 
 def reset():
+    global fade_counter
+    fade_counter = 0
     playerr.die = False
     score.point = 0
     playerr.rect.y = 90
@@ -57,6 +61,17 @@ def reset():
     for land in land_group:
         land.land_speed = 1
 
+def game_over_screen():
+    global fade_counter
+    if fade_counter < 800:
+        fade_counter += 5
+        pygame.draw.rect(screen, (0, 0, 0), (0, 0, fade_counter, 400))
+        pygame.draw.rect(screen, (0, 0, 0), (0, 0, fade_counter, 400))
+        
+    score.hien_thi(screen, 300, 100, f"Score:{score.point}")
+    game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")
+    play_again.hien_thi(screen, 260, 30, "press space to try again :)")        
+
 #vong lap game
 while quit_game == False:
     clock.tick(fps)
@@ -66,8 +81,7 @@ while quit_game == False:
         hien_thi()
         movement()
     else:
-        game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")
-        play_again.hien_thi(screen, 260, 30, "press space to try again :)")
+        game_over_screen()
         key = pygame.key.get_pressed()
         if key[pygame.K_SPACE]:
             reset()

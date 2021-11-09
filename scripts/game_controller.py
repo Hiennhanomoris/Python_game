@@ -64,9 +64,9 @@ def reset():
 def game_over_screen():
     global fade_counter
     if fade_counter < 800:
-        fade_counter += 5
+        fade_counter += 3
         pygame.draw.rect(screen, (0, 0, 0), (0, 0, fade_counter, 400))
-        pygame.draw.rect(screen, (0, 0, 0), (0, 0, fade_counter, 400))
+        pygame.draw.rect(screen, (0, 0, 0), (800-fade_counter, 0, 800, 400))
         
     score.hien_thi(screen, 300, 100, f"Score:{score.point}")
     game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")

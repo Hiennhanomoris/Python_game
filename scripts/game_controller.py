@@ -1,4 +1,5 @@
 import pygame
+from pygame.constants import BUTTON_LEFT
 import player
 import background
 import textx
@@ -71,10 +72,10 @@ def reset():
 def game_over_screen():
     global fade_counter
     global high_score
-    if fade_counter < 800:
+    if fade_counter < 400:
         fade_counter += 3
-        pygame.draw.rect(screen, (0, 0, 0), (0, 0, fade_counter, 400))
-        pygame.draw.rect(screen, (0, 0, 0), (800-fade_counter, 0, 800, 400))
+        pygame.draw.rect(screen, (33, 33, 33), (0, 0, fade_counter, 400))
+        pygame.draw.rect(screen, (33, 33, 33), (800-fade_counter, 0, 800, 400))
 
     if score.point < high_score:  
         score.hien_thi(screen, 300, 100, f"Your Score:{score.point}")
@@ -89,7 +90,8 @@ def game_over_screen():
     game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")
     play_again.hien_thi(screen, 260, 30, "press space to try again :)")        
 
-#vong lap game
+
+#game loop
 while quit_game == False:
     clock.tick(fps)
     if playerr.die == False:

@@ -6,13 +6,41 @@ import textx
 from pygame import mixer 
 import land
 import os
+import button
 
 mixer.init()
 pygame.init()
 
+#tao icon game
+icon = pygame.image.load("images/avt.jpg")
+pygame.display.set_icon(icon)
+
 #tao man hinh
 screen = pygame.display.set_mode((800, 400))  
-pygame.display.set_caption("RUN NOW")
+pygame.display.set_caption("NINJA RUN")
+
+# menu game
+def game_menu():
+    menu = pygame.image.load("images/menu/menu.jpg")
+    menu = pygame.transform.scale(menu,(800,400))
+    screen.blit(menu,(0,0))
+    start_img = pygame.image.load('images/menu/start.png').convert_alpha()
+    exit_img = pygame.image.load('images/menu/exit.png').convert_alpha()
+    start_button = button.Button(600, 140, start_img, 1)
+    exit_button = button.Button(600, 220, exit_img, 1)
+    start_button.draw(screen)
+    exit_button.draw(screen)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        if start_button.get_click() == True:
+                main()
+        if exit_button.get_click() == True:
+                pygame.quit()
+        pygame.display.update()
+    pygame.quit()
 
 #tao cac object ban dau
 bg1 = background.Background(0,0,"images/bg.jpg",0,0)
@@ -32,6 +60,7 @@ fps = 120
 clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
+
 #get high_score
 if os.path.exists("high_score.txt"):
     with open("high_score.txt", "r") as file:
@@ -92,27 +121,35 @@ def game_over_screen():
 
 
 #game loop
-while quit_game == False:
-    clock.tick(fps)
-    if playerr.die == False:
-        screen.fill((255, 255, 255)) 
-        #hien thi anh
-        hien_thi()
-        movement()
-    else:
-        game_over_screen()
-        key = pygame.key.get_pressed()
-        if key[pygame.K_SPACE]:
-            reset()
+def main():
+    fps = 120
+    clock = pygame.time.Clock()
+    quit_game = False
+    reset()
+    while quit_game == False:
+        clock.tick(fps)
+        if playerr.die == False:
+            screen.fill((255, 255, 255)) 
+            #hien thi anh
+            hien_thi()
+            movement()
+        else:
+            game_over_screen()
+            key = pygame.key.get_pressed()
+            if key[pygame.K_SPACE]:
+                reset()
+            if key[pygame.K_BACKSPACE]:
+                game_menu()
 
-    for event in pygame.event.get():
-        #Quit game
-        if event.type == pygame.QUIT:
-            quit_game = True
+        for event in pygame.event.get():
+            #Quit game
+            if event.type == pygame.QUIT:
+                quit_game = True
 
-    pygame.display.update()
+        pygame.display.update()
 
-pygame.quit 
+if __name__ == "__main__":
+    game_menu()
 
 
 

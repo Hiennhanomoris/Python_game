@@ -21,6 +21,8 @@ pygame.display.set_caption("NINJA RUN")
 
 # menu game
 def game_menu():
+    pygame.mixer.music.load("sound/menu_sound.mp3")
+    pygame.mixer.music.play(-1)
     menu = pygame.image.load("images/menu/menu.jpg")
     menu = pygame.transform.scale(menu,(800,400))
     screen.blit(menu,(0,0))
@@ -92,6 +94,8 @@ def movement():
         land.update(score)
 
 def reset():
+    pygame.mixer.music.load("sound/game_sound.mp3")
+    pygame.mixer.music.play(-1)
     global fade_counter
     fade_counter = 0
     playerr.die = False

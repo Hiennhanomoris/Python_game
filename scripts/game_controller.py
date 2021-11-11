@@ -7,6 +7,7 @@ from pygame import mixer
 import land
 import os
 import button
+import time
 
 mixer.init() 
 pygame.init()
@@ -67,6 +68,7 @@ fps = 100
 clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
+check_restart = False
 background_sound = mixer.Sound("sound/game_sound.mp3")
 background_sound.set_volume(0.3)
 
@@ -99,9 +101,11 @@ def movement():
         land.update(score)
 
 def reset():
-    background_sound.play(-1)
+    global check_restart
     global fade_counter
+    check_restart = False
     fade_counter = 0
+    background_sound.play(-1)
     playerr.die = False
     score.point = 0
     playerr.rect.y = 90
@@ -117,6 +121,7 @@ def reset():
         land.land_speed = 1
 
 def game_over_screen():
+    global check_restart
     global fade_counter
     global high_score
     if fade_counter < 400:
@@ -135,7 +140,10 @@ def game_over_screen():
             file.write(str(high_score))
 
     game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")
-    play_again.hien_thi(screen, 260, 30, "press space to try again :)")        
+    play_again.hien_thi(screen, 260, 30, "press space to try again :)")   
+
+    if fade_counter > 400:
+        check_restart = True    
 
 
 #game loop
@@ -155,7 +163,7 @@ def main():
             background_sound.stop()
             game_over_screen()
             key = pygame.key.get_pressed()
-            if key[pygame.K_SPACE]:
+            if key[pygame.K_SPACE] and check_restart:
                 reset()
             if key[pygame.K_BACKSPACE]:
                 game_menu()
@@ -164,6 +172,7 @@ def main():
             #Quit game
             if event.type == pygame.QUIT:
                 quit_game = True
+                pygame.quit()
 
         pygame.display.update()
 

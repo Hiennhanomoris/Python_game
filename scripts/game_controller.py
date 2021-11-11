@@ -21,6 +21,9 @@ pygame.display.set_caption("NINJA RUN")
 
 # menu game
 def game_menu():
+    menu_sound = mixer.Sound("sound/menu_sound.mp3")
+    menu_sound.set_volume(0.5)
+    menu_sound.play(-1)
     menu = pygame.image.load("images/menu/menu.jpg")
     menu = pygame.transform.scale(menu,(800,400))
     screen.blit(menu,(0,0))
@@ -36,6 +39,7 @@ def game_menu():
             if event.type == pygame.QUIT:
                 running = False
         if start_button.get_click() == True:
+                menu_sound.stop()
                 main()
         if exit_button.get_click() == True:
                 pygame.quit()
@@ -44,6 +48,9 @@ def game_menu():
 
 #tao cac object ban dau
 bg1 = background.Background(0,0,"images/bg.jpg",0,0)
+bg2 = background.Background(0,0,"images/bg2.jpg",0,0)
+bg3 = background.Background(0,0,"images/bg3.jpg",0,0)
+bg4 = background.Background(0,0,"images/bg4.jpg",0,0)
 playerr = player.Player(250, 90, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
 game_over = textx.Textx("consolas", 60, "game over", (255, 30, 0))
@@ -56,20 +63,30 @@ land_group = [land1, land2, land3, landstart]
 
 
 #gioi han fps
-fps = 120
+fps = 100
 clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
+background_sound = mixer.Sound("sound/game_sound.mp3")
+background_sound.set_volume(0.3)
 
 #get high_score
 if os.path.exists("high_score.txt"):
     with open("high_score.txt", "r") as file:
         high_score = int(file.read())
 else:
+#if this is the first time, high_score = 0
     high_score = 0
                             
 def hien_thi():
-    bg1.draw(screen)
+    if score.point < 20:
+        bg1.draw(screen)
+    elif score.point >= 20 and score.point < 40:
+        bg2.draw(screen)
+    elif score.point >= 40 and score.point < 60:
+        bg3.draw(screen)
+    else :
+        bg4.draw(screen)
     playerr.hien_thi(screen)
     score.hien_thi(screen, 0, 0, f"Score:{score.point}")
     for land in land_group:
@@ -82,6 +99,7 @@ def movement():
         land.update(score)
 
 def reset():
+    background_sound.play(-1)
     global fade_counter
     fade_counter = 0
     playerr.die = False
@@ -122,7 +140,7 @@ def game_over_screen():
 
 #game loop
 def main():
-    fps = 120
+    fps = 100
     clock = pygame.time.Clock()
     quit_game = False
     reset()
@@ -134,6 +152,7 @@ def main():
             hien_thi()
             movement()
         else:
+            background_sound.stop()
             game_over_screen()
             key = pygame.key.get_pressed()
             if key[pygame.K_SPACE]:

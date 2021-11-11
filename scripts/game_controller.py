@@ -44,6 +44,9 @@ def game_menu():
 
 #tao cac object ban dau
 bg1 = background.Background(0,0,"images/bg.jpg",0,0)
+bg2 = background.Background(0,0,"images/bg2.jpg",0,0)
+bg3 = background.Background(0,0,"images/bg3.jpg",0,0)
+bg4 = background.Background(0,0,"images/bg4.jpg",0,0)
 playerr = player.Player(250, 90, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
 game_over = textx.Textx("consolas", 60, "game over", (255, 30, 0))
@@ -56,7 +59,7 @@ land_group = [land1, land2, land3, landstart]
 
 
 #gioi han fps
-fps = 120
+fps = 100
 clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
@@ -69,7 +72,14 @@ else:
     high_score = 0
                             
 def hien_thi():
-    bg1.draw(screen)
+    if score.point < 20:
+        bg1.draw(screen)
+    elif score.point >= 20 and score.point < 40:
+        bg2.draw(screen)
+    elif score.point >= 40 and score.point < 60:
+        bg3.draw(screen)
+    else :
+        bg4.draw(screen)
     playerr.hien_thi(screen)
     score.hien_thi(screen, 0, 0, f"Score:{score.point}")
     for land in land_group:
@@ -122,7 +132,7 @@ def game_over_screen():
 
 #game loop
 def main():
-    fps = 120
+    fps = 100
     clock = pygame.time.Clock()
     quit_game = False
     reset()

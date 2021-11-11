@@ -158,7 +158,7 @@ def main():
         for event in pygame.event.get():
             #Quit game
             if event.type == pygame.QUIT:
-                quit_game = True
+                pygame.quit()
 
         pygame.display.update()
 

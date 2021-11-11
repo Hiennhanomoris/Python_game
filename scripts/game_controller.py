@@ -8,7 +8,7 @@ import land
 import os
 import button
 
-mixer.init()
+mixer.init() 
 pygame.init()
 
 #tao icon game

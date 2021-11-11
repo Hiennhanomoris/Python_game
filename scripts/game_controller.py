@@ -7,8 +7,9 @@ from pygame import mixer
 import land
 import os
 import button
+import time
 
-mixer.init()
+mixer.init() 
 pygame.init()
 
 #tao icon game
@@ -21,8 +22,9 @@ pygame.display.set_caption("NINJA RUN")
 
 # menu game
 def game_menu():
-    pygame.mixer.music.load("sound/menu_sound.mp3")
-    pygame.mixer.music.play(-1)
+    menu_sound = mixer.Sound("sound/menu_sound.mp3")
+    menu_sound.set_volume(0.5)
+    menu_sound.play(-1)
     menu = pygame.image.load("images/menu/menu.jpg")
     menu = pygame.transform.scale(menu,(800,400))
     screen.blit(menu,(0,0))
@@ -38,6 +40,7 @@ def game_menu():
             if event.type == pygame.QUIT:
                 running = False
         if start_button.get_click() == True:
+                menu_sound.stop()
                 main()
         if exit_button.get_click() == True:
                 pygame.quit()
@@ -65,12 +68,16 @@ fps = 100
 clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
+check_restart = False
+background_sound = mixer.Sound("sound/game_sound.mp3")
+background_sound.set_volume(0.3)
 
 #get high_score
 if os.path.exists("high_score.txt"):
     with open("high_score.txt", "r") as file:
         high_score = int(file.read())
 else:
+#if this is the first time, high_score = 0
     high_score = 0
                             
 def hien_thi():
@@ -94,10 +101,11 @@ def movement():
         land.update(score)
 
 def reset():
-    pygame.mixer.music.load("sound/game_sound.mp3")
-    pygame.mixer.music.play(-1)
+    global check_restart
     global fade_counter
+    check_restart = False
     fade_counter = 0
+    background_sound.play(-1)
     playerr.die = False
     score.point = 0
     playerr.rect.y = 90
@@ -113,6 +121,7 @@ def reset():
         land.land_speed = 1
 
 def game_over_screen():
+    global check_restart
     global fade_counter
     global high_score
     if fade_counter < 400:
@@ -131,7 +140,10 @@ def game_over_screen():
             file.write(str(high_score))
 
     game_over.hien_thi(screen, 230, 200, "GAME OVER!!!")
-    play_again.hien_thi(screen, 260, 30, "press space to try again :)")        
+    play_again.hien_thi(screen, 260, 30, "press space to try again :)")   
+
+    if fade_counter > 400:
+        check_restart = True    
 
 
 #game loop
@@ -148,9 +160,10 @@ def main():
             hien_thi()
             movement()
         else:
+            background_sound.stop()
             game_over_screen()
             key = pygame.key.get_pressed()
-            if key[pygame.K_SPACE]:
+            if key[pygame.K_SPACE] and check_restart:
                 reset()
             if key[pygame.K_BACKSPACE]:
                 game_menu()
@@ -158,6 +171,7 @@ def main():
         for event in pygame.event.get():
             #Quit game
             if event.type == pygame.QUIT:
+                quit_game = True
                 pygame.quit()
 
         pygame.display.update()

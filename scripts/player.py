@@ -21,11 +21,11 @@ class Player(objects.Objects):
 
         #cho cac anh vao cac array de tien su dung
         for i in range(1, 7):
-            img = pygame.image.load(f"images/player/player_run/Cyborg_run{i}.png")
+            img = pygame.image.load(f"images/player/RUN/run{i}.png")
             img = pygame.transform.scale(img, (60, 60))
             self.run_animation.append(img)
-        for i in range(1, 5):
-            img = pygame.image.load(f"images/player/player_jump/Cyborg_jump{i}.png")
+        for i in range(1, 4):
+            img = pygame.image.load(f"images/player/JUMP/jump{i}.png")
             img = pygame.transform.scale(img, (60, 60))
             self.jump_animation.append(img)
 

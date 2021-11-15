@@ -54,7 +54,7 @@ bg2 = background.Background(0,0,"images/bg2.jpg",0,0)
 bg3 = background.Background(0,0,"images/bg3.jpg",0,0)
 bg4 = background.Background(0,0,"images/bg4.jpg",0,0)
 
-playerr = player.Player(250, 90, "images/player.png", 0, 0, mixer)
+playerr = player.Player(250, 90, "images/player/RUN/run1.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
 game_over = textx.Textx("consolas", 60, "game over", (255, 30, 0))
 play_again = textx.Textx("consolas", 20, "play again", (255, 255, 255))

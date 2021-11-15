@@ -25,6 +25,7 @@ def game_menu():
     menu_sound = mixer.Sound("sound/menu_sound.mp3")
     menu_sound.set_volume(0.5)
     menu_sound.play(-1)
+
     menu = pygame.image.load("images/menu/menu.jpg")
     menu = pygame.transform.scale(menu,(800,400))
     screen.blit(menu,(0,0))
@@ -52,6 +53,7 @@ bg1 = background.Background(0,0,"images/bg.jpg",0,0)
 bg2 = background.Background(0,0,"images/bg2.jpg",0,0)
 bg3 = background.Background(0,0,"images/bg3.jpg",0,0)
 bg4 = background.Background(0,0,"images/bg4.jpg",0,0)
+
 playerr = player.Player(250, 90, "images/player.png", 0, 0, mixer)
 score = textx.Textx("consolas", 30, "Score", (100, 200, 168))
 game_over = textx.Textx("consolas", 60, "game over", (255, 30, 0))
@@ -69,6 +71,7 @@ clock = pygame.time.Clock()
 quit_game = False
 fade_counter = 0
 check_restart = False
+
 background_sound = mixer.Sound("sound/game_sound.mp3")
 background_sound.set_volume(0.3)
 
@@ -155,7 +158,7 @@ def main():
     while quit_game == False:
         clock.tick(fps)
         if playerr.die == False:
-            screen.fill((255, 255, 255)) 
+            #screen.fill((255, 255, 255)) 
             #hien thi anh
             hien_thi()
             movement()
